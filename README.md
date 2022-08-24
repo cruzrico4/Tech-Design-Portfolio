@@ -3,6 +3,8 @@
 ### Streamlined Icon Generation
 As a Technical Designer, a large part of my job is to design and implement tools that streamline art workflows. This mini-project allowed artists to automatically generate icons for hundreds of objects at the click of a button, saving countless hours of work for them, had they done each icon manually.
 
+I would later automate the importing process as well, since batch importing was not supported in our engine.
+
 ![Automated icon rendering in Blender](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/ScrollingAutomatedIcons.gif)
 
 ```Python
