@@ -52,11 +52,14 @@ for obj in all_obj:
         bpy.ops.render.render(write_still = 1)
         obj.hide_render = True
 ```
+### Automated Asset Importing
+This project set out to address the problem of getting the sheer volume of assets the team had created into the editor, since it had no built-in batch importing function.
+
 ### Automated Avatar Rigging
-A problem we came across during asset generation for characters was that the engine didn't natively allow importing single .fbx character model and rigs, so we needed a way to quickly export characters piecemeal and reconstruct them in engine, while retaining joint data.
+This problem is similar to the last one, but added on the functionality to directly apply .fbx objects to the body parts of our characters in engine.
+
+Since engine didn't natively allow importing single .fbx character model and rigs, we needed a way to quickly export characters piecemeal and reconstruct them in engine, while retaining joint data.
 
 My solution was to batch export character body parts as .fbx files and write their joint data to .json. I then used an AutoIt script to automate clicks that imported each body part to its correct position, and applied the joint data from the .json file.
 
 Again, this solution saved innumerable hours of rigging by hand, and allowed artists to see their rigged models in-engine extremely quickly, and allowed them to make changes as needed without wasting time.
-
-        
