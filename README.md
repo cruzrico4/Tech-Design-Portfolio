@@ -64,4 +64,8 @@ My solution was to batch export character body parts as .fbx files and write the
 
 Again, this solution saved innumerable hours of rigging by hand, and allowed artists to see their rigged models in-engine extremely quickly, and allowed them to make changes as needed without wasting time.
 
+An example of a character model that needed to have its body parts, as well as position, size, and joint data updated:
+
+The following gif shows the new model's data being updated automatically:
+
 ![Automated Avatar Rigging Gif](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/AvatarBuilderSpeedUp.gif)
