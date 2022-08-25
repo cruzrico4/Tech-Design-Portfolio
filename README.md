@@ -1,7 +1,13 @@
 # Tech Design Portfolio
 ## Automation Projects
 ### Streamlined Icon Generation
-As a Technical Designer, a large part of my job is to design and implement tools that streamline art workflows. This mini-project allowed artists to automatically generate icons for hundreds of objects at the click of a button, saving countless hours of work for them, had they done each icon manually.
+<details>
+<summary>
+As a Technical Designer, a large part of my job is to design and implement tools that streamline art workflows...
+</summary>
+
+This mini-project allowed artists to automatically generate icons for hundreds of objects at the click of a button, saving countless hours of work for them, had they done each icon manually.
+
 
 I would later automate the importing process as well, since batch importing was not supported in our engine.
 
@@ -52,11 +58,23 @@ for obj in all_obj:
         bpy.ops.render.render(write_still = 1)
         obj.hide_render = True
 ```
+</details>
+
 ### Automated Asset Importing
-This project set out to address the problem of getting the sheer volume of assets the team had created into the editor, since it had no built-in batch importing function.
+
+<details>
+<summary>
+This project set out to address the problem of getting the sheer volume of assets the team had created into the editor, since it had no built-in batch importing function...
+</summary>
+
+</details>
 
 ### Automated Avatar Rigging
-This problem is similar to the last one, but added on the functionality to directly apply .fbx objects to the body parts of our characters in engine.
+
+<details>
+<summary>
+This problem is similar to the last one, but added on the functionality to directly apply .fbx objects to the body parts of our characters in engine...
+</summary>
 
 Since engine didn't natively allow importing single .fbx character model and rigs, we needed a way to quickly export characters piecemeal and reconstruct them in engine, while retaining joint data.
 
@@ -69,6 +87,7 @@ An example of a character model that needed to have its body parts, as well as p
 <img src="https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/NewAvatar.png" width="512px" height="512px" />
 <!---![Avatar that needed to be imported](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/NewAvatar.png =512x512)--->
 
-The following gif shows the new model's position, scale, and joint data being updated automatically using AutoIt in lieu of :
+The following gif shows the new model's .fbx body parts, position, scale, and joint data being updated automatically using AutoIt in lieu of built-in functionality:
 
-![Automated Avatar Rigging Gif](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/AvatarBuilderSpeedUp.gif)
+![Automated Avatar Rigging Gif](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/AvatarBuilder.gif)
+</details>
