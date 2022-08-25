@@ -1,7 +1,15 @@
 # Tech Design Portfolio
-## Automation Projects
-### Streamlined Icon Generation
 <details>
+    
+<summary>
+    
+## Automation Projects
+</summary>
+    
+### Streamlined Icon Generation
+    
+<details>
+    
 <summary>
 As a Technical Designer, a large part of my job is to design and implement tools that streamline art workflows...
 </summary>
@@ -60,14 +68,148 @@ for obj in all_obj:
 ```
 </details>
 
+----
+    
+### Exporting Assets With Smallest Collective Bounds
+    
+<details>
+    
+<summary>
+Many assets needed to be exported individually, but also needed to have the same origin, which this project solved...
+    
+</summary>
+
+    
+<details>
+    
+<summary>
+The Code:
+
+</summary>
+
+```Python
+import bpy
+import os
+from pathlib import Path
+
+maxXName = "NONE"
+maxYName = "NONE"
+maxZName = "NONE"
+minXName = "NONE"
+minYName = "NONE"
+minZName = "NONE"
+maxX = 0
+maxY = 0
+maxZ = 0
+minX = 999999999999
+minY = 999999999999
+minZ = 999999999999
+tinyScale = 0.00001
+boundObs = []
+expObs = []
+prefix_string = bpy.context.active_object.users_collection[0].name
+
+#maxZ,maxY,maxX,minZ,minY,minX
+for obj in bpy.context.selected_objects:
+    expObs.append(obj)
+    if obj is not None and obj.type == "MESH":
+        mesh = obj.data
+        for vert in mesh.vertices:
+            globalVert = obj.matrix_world @ vert.co
+            if maxZ < globalVert[2]:
+                maxZ = globalVert[2]
+                maxZName = obj.name
+            if maxY < globalVert[1]:
+                maxY = globalVert[1]
+                maxYName = obj.name
+            if maxX < globalVert[0]:
+                maxX = globalVert[0]
+                maxXName = obj.name
+            if minZ > globalVert[2]:
+                minZ = globalVert[2]
+                minZName = obj.name
+            if minY > globalVert[1]:
+                minY = globalVert[1]
+                minYName = obj.name
+            if minX > globalVert[0]:
+                minX = globalVert[0]
+                minXName = obj.name
+
+print(maxXName," has a bound at X = ",maxX)
+print(maxYName," has a bound at Y = ",maxY)
+print(maxZName," has a bound at Z = ",maxZ)
+bpy.ops.mesh.primitive_cube_add(location=(maxX,maxY,maxZ))
+bpy.context.active_object.name = "UpperBound"
+bpy.context.active_object.scale.x = tinyScale
+bpy.context.active_object.scale.y = tinyScale
+bpy.context.active_object.scale.z = tinyScale
+boundObs.append(bpy.data.objects["UpperBound"])
+
+print(minXName," has a bound at X = ",minX)
+print(minYName," has a bound at Y = ",minY)
+print(minZName," has a bound at Z = ",minZ)
+bpy.ops.mesh.primitive_cube_add(location=(minX,minY,minZ))
+bpy.context.active_object.name = "LowerBound"
+bpy.context.active_object.scale.x = tinyScale
+bpy.context.active_object.scale.y = tinyScale
+bpy.context.active_object.scale.z = tinyScale
+boundObs.append(bpy.data.objects["LowerBound"])
+
+ctx = bpy.context.copy()
+
+# one of the objects to join
+ctx['active_object'] = boundObs[0]
+
+ctx['selected_objects'] = ctx["selected_editable_objects"] = boundObs
+
+bpy.ops.object.join(ctx)
+
+##========================================================================
+##========================================================================
+##========================================================================
+
+#Get file path for prefixing exported .obj's
+file_path = bpy.data.filepath
+filepath_split = os.path.split(file_path) #list with [path, name]
+print(prefix_string)
+
+#construct export path
+export_path = "C:\\Users\\cruzr\\Desktop\\ReworldObjects\\MobileCreationTool\\Objects\\Props" + "\\" + prefix_string + "\\"
+ext = ".obj"
+
+#make path if not exist
+if not os.path.isdir(export_path):
+    os.makedirs(export_path)
+
+#export all selected objects to export_path
+for obj in expObs: 
+    bpy.ops.object.select_all(action="DESELECT")
+    obj.select_set(True)
+    bpy.data.objects["UpperBound"].select_set(True)
+    full_path = export_path + prefix_string + "_" + str.split(obj.name,".")[0] + ext
+    print(full_path)
+    bpy.ops.export_scene.obj(filepath=full_path,use_selection=True)
+bpy.ops.object.select_all(action="DESELECT")
+bpy.data.objects["UpperBound"].select_set(True)
+bpy.ops.object.delete()
+```
+</details>
+    
+</details>
+        
+----
+    
 ### Automated Asset Importing
 
 <details>
+    
 <summary>
 This project set out to address the problem of getting the sheer volume of assets the team had created into the editor, since it had no built-in batch importing function...
 </summary>
 
 </details>
+    
+----
 
 ### Automated Avatar Rigging
 
@@ -91,3 +233,6 @@ The following gif shows the new model's .fbx body parts, position, scale, and jo
 
 ![Automated Avatar Rigging Gif](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/AvatarBuilder.gif)
 </details>
+
+----
+
