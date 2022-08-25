@@ -66,7 +66,7 @@ Again, this solution saved innumerable hours of rigging by hand, and allowed art
 
 An example of a character model that needed to have its body parts, as well as position, size, and joint data updated:
 
-![Avater that needed to be imported]([https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/AvatarBuilderSpeedUp.gif](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/NewAvatar.png))
+![Avatar that needed to be imported](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/NewAvatar.png)
 
 The following gif shows the new model's position, scale, and joint data being updated automatically:
 
