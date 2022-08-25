@@ -6,7 +6,7 @@
 ## Automation Projects (Python, AutoIt)
 </summary>
     
-### Streamlined Icon Generation
+### ⚙ Streamlined Icon Generation
     
 <details>
     
@@ -70,7 +70,7 @@ for obj in all_obj:
 
 ----
     
-### Exporting Assets With Smallest Collective Bounds
+### ⚙ Exporting Assets With Smallest Collective Bounds
     
 <details>
     
@@ -204,7 +204,7 @@ bpy.ops.object.delete()
         
 ----
     
-### Automated Asset Importing
+### ⚙ Automated Asset Importing
 
 <details>
     
@@ -216,7 +216,7 @@ This project set out to address the problem of getting the sheer volume of asset
     
 ----
 
-### Automated Avatar Rigging
+### ⚙ Automated Avatar Rigging
 
 <details>
 <summary>
