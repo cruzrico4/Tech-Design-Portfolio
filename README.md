@@ -3,7 +3,7 @@
     
 <summary>
     
-## Automation Projects
+## Automation Projects (Python, AutoIt)
 </summary>
     
 ### Streamlined Icon Generation
@@ -236,3 +236,14 @@ The following gif shows the new model's .fbx body parts, position, scale, and jo
 
 ----
 
+</details>
+
+<details>
+
+<summary>
+    
+### Game Features (Lua)
+
+</summary>
+
+</details
