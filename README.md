@@ -78,6 +78,10 @@ for obj in all_obj:
 Many assets needed to be exported individually, but also needed to have the same origin, which this project solved...
     
 </summary>
+    
+This was an interesting problem that allowed me to explore more ways to automate processing assets to optimize their usability for specific purposes in engine. The following image shows the bounds needed, based on many individual objects (the roof, chimney, walls, door, and steps), in order to place them all at one location and maintain their visual offset from one another.
+    
+![Smallest bounds of multiple objects](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/AssetBounds.jpeg)
 
     
 <details>
@@ -107,6 +111,7 @@ minZ = 999999999999
 tinyScale = 0.00001
 boundObs = []
 expObs = []
+desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
 prefix_string = bpy.context.active_object.users_collection[0].name
 
 #maxZ,maxY,maxX,minZ,minY,minX
@@ -174,7 +179,7 @@ filepath_split = os.path.split(file_path) #list with [path, name]
 print(prefix_string)
 
 #construct export path
-export_path = "C:\\Users\\cruzr\\Desktop\\ReworldObjects\\MobileCreationTool\\Objects\\Props" + "\\" + prefix_string + "\\"
+export_path = desktop + "\\ReworldObjects\\MobileCreationTool\\Objects\\Props" + "\\" + prefix_string + "\\"
 ext = ".obj"
 
 #make path if not exist
@@ -242,7 +247,7 @@ The following gif shows the new model's .fbx body parts, position, scale, and jo
 
 <summary>
     
-### Game Features (Lua)
+## Game Features (Lua)
 
 </summary>
 
