@@ -66,8 +66,9 @@ Again, this solution saved innumerable hours of rigging by hand, and allowed art
 
 An example of a character model that needed to have its body parts, as well as position, size, and joint data updated:
 
-![Avatar that needed to be imported](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/NewAvatar.png)
+<img src="https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/NewAvatar.png" width="512px" height="512px" />
+<!---![Avatar that needed to be imported](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/NewAvatar.png =512x512)--->
 
-The following gif shows the new model's position, scale, and joint data being updated automatically:
+The following gif shows the new model's position, scale, and joint data being updated automatically using AutoIt in lieu of :
 
 ![Automated Avatar Rigging Gif](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/AvatarBuilderSpeedUp.gif)
