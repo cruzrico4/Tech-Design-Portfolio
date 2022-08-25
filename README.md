@@ -73,7 +73,7 @@ This project set out to address the problem of getting the sheer volume of asset
 
 <details>
 <summary>
-This problem is similar to the last one, but added on the functionality to directly apply .fbx objects to the body parts of our characters in engine...
+This problem is similar to the last one, but added on the functionality to directly apply .fbx objects to the body parts of our characters in engine, and apply external data to the character rig in order to achieve a perfect 1:1 replacement...
 </summary>
 
 Since engine didn't natively allow importing single .fbx character model and rigs, we needed a way to quickly export characters piecemeal and reconstruct them in engine, while retaining joint data.
