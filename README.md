@@ -1,14 +1,17 @@
-# Tech Design Portfolio
+# Joseph Cruz Rico
+## Tech Design Portfolio
+
 <details>
     
 <summary>
     
-## Automation Projects (Python, AutoIt)
+### Automation Projects (Python, AutoIt)
 </summary>
     
-### ⚙ Streamlined Icon Generation
     
+#### ⚙ Streamlined Icon Generation
 <details>
+    
     
 <summary>
 As a Technical Designer, a large part of my job is to design and implement tools that streamline art workflows...
@@ -70,7 +73,7 @@ for obj in all_obj:
 
 ----
     
-### ⚙ Exporting Assets With Smallest Collective Bounds
+#### ⚙ Exporting Assets With Smallest Collective Bounds
     
 <details>
     
@@ -204,10 +207,9 @@ bpy.ops.object.delete()
         
 ----
     
-### ⚙ Automated Asset Importing
+#### ⚙ Automated Asset Importing
 
 <details>
-    
 <summary>
 This project set out to address the problem of getting the sheer volume of assets the team had created into the editor, since it had no built-in batch importing function...
 </summary>
@@ -216,7 +218,7 @@ This project set out to address the problem of getting the sheer volume of asset
     
 ----
 
-### ⚙ Automated Avatar Rigging
+#### ⚙ Automated Avatar Rigging
 
 <details>
 <summary>
@@ -247,8 +249,178 @@ The following gif shows the new model's .fbx body parts, position, scale, and jo
 
 <summary>
     
-## Game Features (Lua)
+### Game Features (Lua)
 
 </summary>
 
-</details
+#### 🎮 Intro Camera Sequence
+
+<details>
+
+<summary>
+I'm all about the little features that add that bit of razzle-dazzle to the game, and this project is one example of that...
+</summary>
+
+Upon loading into a new world, our players were to be presented with a bird's eye panoramic rotation view of the new environment. This required a bit of engineering to pull off, but achieved a very satisfying effect.
+	
+![Bird's-eye rotation intro cam](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/IntroCamGif.gif)
+	
+<details>
+	
+<summary>
+And the code:
+</summary>
+	
+```Lua
+local CameraIntro = {}
+CameraIntro.__index = CameraIntro
+
+function CameraIntro.New()
+	local self = setmetatable({}, CameraIntro)
+	self:Init()
+	return self
+end--New()
+
+function CameraIntro:Init()
+	self.TweenService = GetService("TweenService")
+	self.Skip = CommonStorage["Resource"]["FTUE"]["FTUEBase"]["SkipButton"]:Clone(GameUI)
+	self.Skip.IsVisible = false
+	self.IsIntroOver = false
+end--Init()
+
+function CameraIntro:Run()
+	local target = WorkSpace.HomeworldMap.IntroCamTarget
+	local player = Players:GetLocalPlayer()
+	local ava = player.Avatar
+	--Needed to calculate end position of turnaround part to avatar transition
+	local avaMidHeight = 1.3/2
+	GameUI.UIJoystick.IsVisible = false
+	--Remove control from player
+	ava.AvatarStatusSwitch = false
+	self.OriginalCam = {}
+	self.OriginalCam.Subject         = WorkSpace.CurCamera.Subject
+	self.OriginalCam.Offset          = WorkSpace.CurCamera.Offset          
+	self.OriginalCam.MaxZoomDistance = WorkSpace.CurCamera.MaxZoomDistance
+	self.OriginalCam.Distance        = WorkSpace.CurCamera.Distance            
+	self.OriginalCam.Occlusion       = WorkSpace.CurCamera.Occlusion                
+	self.OriginalCam.Transparency    = WorkSpace.CurCamera.Transparency                
+
+	--Initial camera settings for turnaround
+	WorkSpace.CurCamera.Subject = target
+	WorkSpace.CurCamera.Offset = Vector3.New(0,0.5,0)
+	WorkSpace.CurCamera.MaxZoomDistance = 200
+	WorkSpace.CurCamera.Distance = 30
+	WorkSpace.CurCamera.Occlusion = false
+	WorkSpace.CurCamera.Transparency = 1
+	WorkSpace.CurCamera.Distance = 40
+	WorkSpace.CurCamera.Pitch = 35
+	WorkSpace.CurCamera.Yaw = 0
+
+	--Tween to 360° rotate around starting area
+	local rotTweenInfo = {
+		duration = 8000,
+		easing = "inOutQuad",
+
+	}
+	local rotProps = {
+		Yaw = 360
+	}
+
+	--Tween to change camera subject from target part to avatar
+	local changeSubjectTweenInfo = {
+		duration = 3000,
+		easing = "inOutQuad",
+	}
+
+	local zoomDistanceInfo = {
+		duration = 3000,
+		easing = "inOutQuad"
+	}
+	local zoomDistanceProps = {
+		Distance = 2,
+		--	Pitch = 25,
+	}
+	local zoomPitchDownInfo = {
+		duration = 2300,
+		easing = "inOutQuad"
+	}
+	local zoomPitchDownProps = {
+		--	Distance = 2,
+		Pitch = 5,
+	}
+	local zoomPitchUpInfo = {
+		duration = 700,
+		easing = "inOutQuad"
+	}
+	local zoomPitchUpProps = {
+		--	Distance = 2,
+		Pitch = 20,
+	}
+	local changeSubjectTweenProps = {	
+		--This is the position that lines up perfectly when the avatar is the camera subject
+		Position = ava.Position + Vector3.New(0,avaMidHeight+.4301,0),
+	}
+
+	local introCamTween = self.TweenService:CreateTween(WorkSpace.CurCamera, rotTweenInfo,rotProps)
+	local tweenTargetPos = self.TweenService:CreateTween(target,changeSubjectTweenInfo,changeSubjectTweenProps)
+	local zoomDistanceTween = self.TweenService:CreateTween(WorkSpace.CurCamera,zoomDistanceInfo,zoomDistanceProps)
+	local zoomPitchDownTween = self.TweenService:CreateTween(WorkSpace.CurCamera,zoomPitchDownInfo,zoomPitchDownProps)
+
+	local function IntroDone()
+		introCamTween:Stop()
+		tweenTargetPos:Stop()
+		zoomDistanceTween:Stop()
+		zoomPitchDownTween:Stop()
+		GameUI.UIJoystick.IsVisible = true
+		WorkSpace.CurCamera.Offset           = self.OriginalCam.Offset                    
+		WorkSpace.CurCamera.MaxZoomDistance  = self.OriginalCam.MaxZoomDistance 
+		WorkSpace.CurCamera.Distance         = self.OriginalCam.Distance                 
+		WorkSpace.CurCamera.Occlusion        = self.OriginalCam.Occlusion                      
+		WorkSpace.CurCamera.Transparency     = self.OriginalCam.Transparency     
+		WorkSpace.CurCamera.Position = Vector3(-29.3786,2.1494,-22.5093)
+		WorkSpace.CurCamera.Pitch = 20
+		--Return control to player, reset default camera settings
+		WorkSpace.CurCamera.Subject = ava
+		ava.AvatarStatusSwitch = true
+		self.Skip:Destroy()
+		self.IsIntroOver = true
+	end
+	local function SkipFunc()
+		IntroDone()
+		self.IsSkipped = true
+		FTUEHelper:FirstScenarioOver()
+	end
+	self.Skip.OnClick:Connect(SkipFunc)
+
+	introCamTween:Play()
+	introCamTween:OnComplete(function()
+			tweenTargetPos:Play()
+			zoomDistanceTween:Play()
+			zoomPitchDownTween:Play()
+			zoomPitchDownTween:OnComplete(function()
+					local zoomPitchUpTween = self.TweenService:CreateTween(WorkSpace.CurCamera,zoomPitchUpInfo,zoomPitchUpProps)
+					zoomPitchUpTween:Play()
+				end
+			)
+			zoomDistanceTween:OnComplete(IntroDone)
+		end
+	)
+end
+
+return CameraIntro
+```
+</details>
+
+</details>
+
+#### 🎮 User Interface - Toast Notification
+
+<details>
+
+<summary>
+Building off of the last feature, I think every facet of the User Interface should look smooth...
+</summary>
+
+</details>
+	
+</details>
