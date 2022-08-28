@@ -22,7 +22,7 @@ This mini-project allowed artists to automatically generate icons for hundreds o
 
 I would later automate the importing process as well, since batch importing was not supported in our engine.
 
-![Automated icon rendering in Blender](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/ScrollingAutomatedIcons.gif)
+<img src="https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/ScrollingAutomatedIcons.gif" height="256px"/>
 
 ```Python
 ########################################################
@@ -84,7 +84,7 @@ Many assets needed to be exported individually, but also needed to have the same
     
 This was an interesting problem that allowed me to explore more ways to automate processing assets to optimize their usability for specific purposes in engine. The following image shows the bounds needed, based on many individual objects (the roof, chimney, walls, door, and steps), in order to place them all at one location and maintain their visual offset from one another.
     
-![Smallest bounds of multiple objects](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/AssetBounds.jpeg)
+<img src="https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/AssetBounds.jpeg" height="256px"/>
 
     
 <details>
@@ -233,12 +233,12 @@ Again, this solution saved innumerable hours of rigging by hand, and allowed art
 
 An example of a character model that needed to have its body parts, as well as position, size, and joint data updated:
 
-<img src="https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/NewAvatar.png" width="512px" height="512px" />
+<img src="https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/NewAvatar.png" width="auto" height="256px" />
 <!---![Avatar that needed to be imported](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/NewAvatar.png =512x512)--->
 
 The following gif shows the new model's .fbx body parts, position, scale, and joint data being updated automatically using AutoIt in lieu of built-in functionality:
 
-![Automated Avatar Rigging Gif](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/AvatarBuilder.gif)
+<img src="https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/AvatarBuilder.gif" width="auto" height="256px" />
 </details>
 
 ----
@@ -263,7 +263,7 @@ I'm all about the little features that add that bit of razzle-dazzle to the game
 
 Upon loading into a new world, our players were to be presented with a bird's eye panoramic rotation view of the new environment. This required a bit of engineering to pull off, but achieved a very satisfying effect.
 	
-![Bird's-eye rotation intro cam](https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/IntroCamGif.gif)
+<img src="https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/IntroCamGif.gif" height="256px"/>
 	
 <details>
 	
@@ -422,7 +422,7 @@ Building off of the last feature, I think every facet of the User Interface shou
 </summary>
 
 	
-<img src="https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/ToastGif.gif" height="512px" width="auto"/>
+<img src="https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/ToastGif.gif" height="256px"/>
 	
 </details>
 	
