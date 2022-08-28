@@ -421,6 +421,9 @@ return CameraIntro
 Building off of the last feature, I think every facet of the User Interface should look smooth...
 </summary>
 
+	
+<img src="https://github.com/cruzrico4/Tech-Design-Portfolio/blob/main/Projects/Automation/Media/ToastGif.gif" height="512px" width="auto"/>
+	
 </details>
 	
 </details>
